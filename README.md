@@ -6,7 +6,7 @@ Obviously to start you are going to need to create a python environment and run 
 
 ## Part 1: Creating A Reddit App
 The first thing you need to do is create an App on the Reddit Apps Page and get the corresponding keys needed to run `GetPosts.py`, which surprisingly, gets posts using python.
-**Step by Step instructions - **
+
 - Go onto the [Reddit Apps Page](https://www.reddit.com/login/?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps%2F)
 - Select "Create Another App" at the bottom of the page
 - Create a fun and quirky name for the app to hide the pain that you will be feeling from using this code and run away from the feelings of grief and guilt you will be experiencing knowing that you are making the internet a worse place overall due to your hubris of wanting to get a few measly likes on a social media site
