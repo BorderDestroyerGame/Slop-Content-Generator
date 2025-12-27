@@ -76,13 +76,18 @@ def GenerateVideo(ThreadFolder:str):
             tts = edge_tts.Communicate(text, voice=voice)
             await tts.save(f"./TempStuffForBuilding/{ThreadFolder}/{to_save}.mp3")
 
-        reddit_page = random.choice(os.listdir('./RedditLists'))
+        reddit_page = random.choice(os.listdir('./RedditLists')).split("_")[0]
         data = pd.read_csv(f"./RedditLists/{reddit_page}").values.tolist()
         story = random.choice(data)
         
-        title = str(story[0]).replace("AITA", "Am I The Asshole").replace("aita", "Am I The Asshole").replace("Aita", "Am I the Asshole") + "... "
-        author = str(story[1])
-        body = story[2].replace("AITA", "Am I The Asshole")
+        if reddit_page == "AmItheAsshole":
+            title = str(story[0]).replace("AITA", "Am I The Asshole").replace("aita", "Am I The Asshole").replace("Aita", "Am I the Asshole") + "... "
+            author = str(story[1])
+            body = story[2].replace("AITA", "Am I The Asshole")
+        else:   
+            title = str(story[0])
+            author = str(story[1])
+            body = story[2]
 
         identifier = random.randint(0, 1000000)
         asyncio.run(save_tts(title, f"temp_title{identifier}"))
@@ -198,11 +203,11 @@ def GenerateVideo(ThreadFolder:str):
             os.remove(f"./TempStuffForBuilding/{ThreadFolder}/{file}")
 
 if __name__ == "__main__":
-    #thread1 = multiprocessing.Process(target=GenerateVideo, args=("Thread1",))
-    #thread1.start()
-    #thread2 = multiprocessing.Process(target=GenerateVideo, args=("Thread2",))
-    #thread2.start()
-    #thread3 = multiprocessing.Process(target=GenerateVideo, args=("Thread3",))
-    #thread3.start()
+    thread1 = multiprocessing.Process(target=GenerateVideo, args=("Thread1",))
+    thread1.start()
+    thread2 = multiprocessing.Process(target=GenerateVideo, args=("Thread2",))
+    thread2.start()
+    thread3 = multiprocessing.Process(target=GenerateVideo, args=("Thread3",))
+    thread3.start()
     
     GenerateVideo("Thread4")
